@@ -62,14 +62,9 @@ contract MorphImpactStakingTest is Test {
         vault.addSupportedToken(address(mockUSDC), 1000); // 10%
         vault.addSupportedToken(address(mockWETH), 800);  // 8%
 
-        // Fund user and vault with enough tokens for yields
+        // Fund user and vault owner for simulated yields
         mockUSDC.mint(address(this), 1_000_000 ether);
         mockWETH.mint(address(this), 1_000 ether);
-
-        // Fund the vault with sufficient tokens for yield payouts
-        // Transfer a large amount to the vault for yield simulation
-        mockUSDC.transfer(address(vault), 100_000 ether);
-        mockWETH.transfer(address(vault), 100 ether);
     }
 
     function testStakeClaimUnstake_USDC_100pctToNGO() public {
