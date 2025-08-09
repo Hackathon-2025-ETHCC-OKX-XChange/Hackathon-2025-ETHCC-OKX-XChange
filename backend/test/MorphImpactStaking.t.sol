@@ -5,7 +5,7 @@ import {Test} from "forge-std/Test.sol";
 import {NGORegistry} from "../src/NGORegistry.sol";
 import {MorphImpactStaking} from "../src/MorphImpactStaking.sol";
 import {MockYieldVault} from "../src/MockYieldVault.sol";
-import {IERC20} from "openzeppelin-contracts/contracts/token/ERC20/IERC20.sol";
+import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 contract MockERC20 is IERC20 {
     string public name;

@@ -19,23 +19,23 @@ contract NGORegistryTest is Test {
 
         registry.registerNGO("Save Earth", "desc", "https://site", "ipfs://logo", ngoAddr, causes, "ipfs://meta");
         // initially unverified
-        (string memory name, , , , address wallet, bool isVerified, bool isActive, , , , uint256 rep, , ) = registry.getNGO(ngoAddr);
-        assertEq(name, "Save Earth");
-        assertEq(wallet, ngoAddr);
-        assertFalse(isVerified);
-        assertTrue(isActive);
-        assertEq(rep, 70);
+        NGORegistry.NGO memory ngo = registry.getNGO(ngoAddr);
+        assertEq(ngo.name, "Save Earth");
+        assertEq(ngo.walletAddress, ngoAddr);
+        assertFalse(ngo.isVerified);
+        assertTrue(ngo.isActive);
+        assertEq(ngo.reputationScore, 70);
 
         // verify
         registry.verifyNGO(ngoAddr);
-        (, , , , , isVerified, , , , , , , ) = registry.getNGO(ngoAddr);
-        assertTrue(isVerified);
+        ngo = registry.getNGO(ngoAddr);
+        assertTrue(ngo.isVerified);
 
         // update info
         string[] memory causes2 = new string[](1);
         causes2[0] = "Water";
         registry.updateNGOInfo(ngoAddr, "New Name", "newdesc", "https://new", "ipfs://new", causes2, "ipfs://meta2");
-        (name, , , , , , , , , , , , ) = registry.getNGO(ngoAddr);
-        assertEq(name, "New Name");
+        ngo = registry.getNGO(ngoAddr);
+        assertEq(ngo.name, "New Name");
     }
 }
