@@ -107,8 +107,14 @@ contract MorphImpactStaking is ReentrancyGuard, Pausable, Ownable {
         StakeInfo storage stakeInfo = userStake.stakes[_token][_ngo];
 
         if (stakeInfo.isActive) {
+            // When adding to existing stake, verify parameters match existing stake
+            if (stakeInfo.yieldContributionRate != _yieldContributionRate) revert InvalidYieldContribution();
             stakeInfo.amount += _amount;
-            stakeInfo.lockUntil = block.timestamp + _lockPeriod;
+            // Only extend lock period if new lock is longer than remaining time
+            uint256 newLockUntil = block.timestamp + _lockPeriod;
+            if (newLockUntil > stakeInfo.lockUntil) {
+                stakeInfo.lockUntil = newLockUntil;
+            }
         } else {
             stakeInfo.amount = _amount;
             stakeInfo.lockUntil = block.timestamp + _lockPeriod;
@@ -142,11 +148,10 @@ contract MorphImpactStaking is ReentrancyGuard, Pausable, Ownable {
         uint256 unstakeAmount = _amount == 0 ? stakeInfo.amount : _amount;
         if (stakeInfo.amount < unstakeAmount) revert InsufficientBalance();
 
+        // Calculate yield BEFORE any external calls
         (uint256 yieldToUser, uint256 yieldToNGO) = _calculateAndAccrueYield(msg.sender, _ngo, _token);
 
-        yieldVault.claimYield(_token);
-        yieldVault.withdraw(_token, unstakeAmount);
-
+        // Update state BEFORE external calls (Checks-Effects-Interactions pattern)
         stakeInfo.amount -= unstakeAmount;
         if (stakeInfo.amount == 0) {
             stakeInfo.isActive = false;
@@ -155,10 +160,14 @@ contract MorphImpactStaking is ReentrancyGuard, Pausable, Ownable {
         }
         totalStaked[_token] -= unstakeAmount;
         totalStakedForNGO[_token][_ngo] -= unstakeAmount;
+        totalYieldToNGO[_token][_ngo] += yieldToNGO;
+
+        // External calls happen AFTER state updates
+        yieldVault.claimYield(_token);
+        yieldVault.withdraw(_token, unstakeAmount);
 
         if (yieldToNGO > 0) {
             IERC20(_token).safeTransfer(_ngo, yieldToNGO);
-            totalYieldToNGO[_token][_ngo] += yieldToNGO;
             ngoRegistry.updateYieldReceived(_ngo, yieldToNGO);
         }
         if (yieldToUser > 0) {
@@ -173,11 +182,18 @@ contract MorphImpactStaking is ReentrancyGuard, Pausable, Ownable {
         UserStake storage userStake = userStakes[msg.sender];
         StakeInfo storage stakeInfo = userStake.stakes[_token][_ngo];
         if (!stakeInfo.isActive) revert NoActiveStake();
+
+        // Calculate yield BEFORE any external calls
         (uint256 yieldToUser, uint256 yieldToNGO) = _calculateAndAccrueYield(msg.sender, _ngo, _token);
+
+        // Update state BEFORE external calls (Checks-Effects-Interactions pattern)
+        totalYieldToNGO[_token][_ngo] += yieldToNGO;
+
+        // External calls happen AFTER state updates
         yieldVault.claimYield(_token);
+
         if (yieldToNGO > 0) {
             IERC20(_token).safeTransfer(_ngo, yieldToNGO);
-            totalYieldToNGO[_token][_ngo] += yieldToNGO;
             ngoRegistry.updateYieldReceived(_ngo, yieldToNGO);
         }
         if (yieldToUser > 0) {

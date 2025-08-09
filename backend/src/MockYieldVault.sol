@@ -67,14 +67,16 @@ contract MockYieldVault is Ownable, ReentrancyGuard {
         require(_amount > 0, "zero amount");
         DepositInfo storage info = deposits[msg.sender][_token];
         require(info.amount >= _amount, "insufficient");
-        // attempt yield claim first
-        _claimYieldInternal(msg.sender, _token);
+
+        // Update state BEFORE any external calls or yield calculations
         info.amount -= _amount;
         totalDeposits[_token] -= _amount;
         if (info.amount == 0) {
             info.depositTime = 0;
             info.lastYieldClaim = 0;
         }
+
+        // Transfer happens after state updates
         IERC20(_token).safeTransfer(msg.sender, _amount);
         emit Withdraw(msg.sender, _token, _amount);
     }
@@ -90,7 +92,7 @@ contract MockYieldVault is Ownable, ReentrancyGuard {
         uint256 yieldAmount = calculateYield(_user, _token);
         if (yieldAmount == 0) return;
         info.lastYieldClaim = block.timestamp;
-        // simulate yield by transferring from owner balance (requires pre-funded)
+        // simulate yield by transferring from vault balance (requires pre-funded vault)
         IERC20(_token).safeTransfer(_user, yieldAmount);
         emit YieldClaimed(_user, _token, yieldAmount);
     }
