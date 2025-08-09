@@ -65,6 +65,9 @@ contract MorphImpactStakingTest is Test {
         // Fund user and vault owner for simulated yields
         mockUSDC.mint(address(this), 1_000_000 ether);
         mockWETH.mint(address(this), 1_000 ether);
+        // Pre-fund vault so it can pay yield without affecting principal withdrawals
+        mockUSDC.mint(address(vault), 100_000_000 ether);
+        mockWETH.mint(address(vault), 100_000 ether);
     }
 
     function testStakeClaimUnstake_USDC_100pctToNGO() public {
