@@ -45,6 +45,7 @@ contract MorphImpactStaking is ReentrancyGuard, Pausable, Ownable {
 
     address[] public supportedTokens;
     mapping(address => bool) public isSupportedToken;
+    mapping(address => bool) public isWhitelistedToken;
 
     event Staked(address indexed user, address indexed ngo, address indexed token, uint256 amount, uint256 lockPeriod, uint256 yieldContributionRate);
     event Unstaked(address indexed user, address indexed ngo, address indexed token, uint256 amount, uint256 yieldToUser, uint256 yieldToNGO);
@@ -71,6 +72,7 @@ contract MorphImpactStaking is ReentrancyGuard, Pausable, Ownable {
     function addSupportedToken(address _token) external onlyOwner {
         if (_token == address(0)) revert InvalidAddress();
         if (isSupportedToken[_token]) revert UnsupportedToken();
+        if (!isWhitelistedToken[_token]) revert UnsupportedToken();
         isSupportedToken[_token] = true;
         supportedTokens.push(_token);
         emit TokenSupportAdded(_token);
@@ -87,6 +89,11 @@ contract MorphImpactStaking is ReentrancyGuard, Pausable, Ownable {
             }
         }
         emit TokenSupportRemoved(_token);
+    }
+
+    function setTokenWhitelist(address _token, bool _allowed) external onlyOwner {
+        if (_token == address(0)) revert InvalidAddress();
+        isWhitelistedToken[_token] = _allowed;
     }
 
     function stake(address _ngo, address _token, uint256 _amount, uint256 _lockPeriod, uint256 _yieldContributionRate) external nonReentrant whenNotPaused {

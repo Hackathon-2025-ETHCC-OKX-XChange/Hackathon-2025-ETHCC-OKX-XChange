@@ -11,17 +11,31 @@ contract NGORegistryTest is Test {
         registry = new NGORegistry();
     }
 
-    function testCreateAndApproveNGO() public {
-        uint256 ngoId = registry.createNGO("Save Earth", "ipfs://metadata", address(0xBEEF));
-        assertEq(ngoId, 0);
+    function testRegisterVerifyAndUpdateNGO() public {
+        address ngoAddr = address(0xBEEF);
+        string[] memory causes = new string[](2);
+        causes[0] = "Education";
+        causes[1] = "Health";
 
-        (string memory name,, address beneficiary, bool approved) = registry.getNGO(ngoId);
+        registry.registerNGO("Save Earth", "desc", "https://site", "ipfs://logo", ngoAddr, causes, "ipfs://meta");
+        // initially unverified
+        (string memory name, , , , address wallet, bool isVerified, bool isActive, , , , uint256 rep, , ) = registry.getNGO(ngoAddr);
         assertEq(name, "Save Earth");
-        assertEq(beneficiary, address(0xBEEF));
-        assertFalse(approved);
+        assertEq(wallet, ngoAddr);
+        assertFalse(isVerified);
+        assertTrue(isActive);
+        assertEq(rep, 70);
 
-        registry.setApproval(ngoId, true);
-        (, , , approved) = registry.getNGO(ngoId);
-        assertTrue(approved);
+        // verify
+        registry.verifyNGO(ngoAddr);
+        (, , , , , isVerified, , , , , , , ) = registry.getNGO(ngoAddr);
+        assertTrue(isVerified);
+
+        // update info
+        string[] memory causes2 = new string[](1);
+        causes2[0] = "Water";
+        registry.updateNGOInfo(ngoAddr, "New Name", "newdesc", "https://new", "ipfs://new", causes2, "ipfs://meta2");
+        (name, , , , , , , , , , , , ) = registry.getNGO(ngoAddr);
+        assertEq(name, "New Name");
     }
 }
