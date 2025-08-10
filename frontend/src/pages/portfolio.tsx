@@ -174,9 +174,9 @@ const Portfolio: NextPage = () => {
                           <p className="text-gray-600 mb-6">
                             Start supporting NGOs by staking your tokens
                           </p>
-                          <a href="/discover" className="btn-primary">
+                          <Link href="/discover" className="btn-primary">
                             Discover NGOs
-                          </a>
+                          </Link>
                         </div>
                       ) : (
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -291,12 +291,12 @@ const Portfolio: NextPage = () => {
               <div className="card p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                  <a href="/discover" className="btn-primary text-center">
+                  <Link href="/discover" className="btn-primary text-center">
                     Discover More NGOs
-                  </a>
-                  <a href="/register-ngo" className="btn-secondary text-center">
+                  </Link>
+                  <Link href="/register-ngo" className="btn-secondary text-center">
                     Register Your NGO
-                  </a>
+                  </Link>
                   <button className="btn-secondary">
                     Export Portfolio
                   </button>
