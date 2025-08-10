@@ -87,7 +87,7 @@ const Discover: NextPage = () => {
 
               {/* Cause Filter */}
               <div className="lg:w-64">
-                <selec
+                <select
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
                   value={selectedCause}
                   onChange={(e) => setSelectedCause(e.target.value)}
@@ -101,7 +101,7 @@ const Discover: NextPage = () => {
 
               {/* Verification Filter */}
               <div className="flex items-center space-x-2">
-                <inpu
+                <input
                   type="checkbox"
                   id="verified-only"
                   className="w-4 h-4 text-primary-600 border-gray-300 rounded focus:ring-primary-500"
@@ -134,7 +134,7 @@ const Discover: NextPage = () => {
             <div className="mt-4 flex flex-wrap gap-2">
               {searchTerm && (
                 <span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-primary-100 text-primary-800">
-                  Search: "{searchTerm}"
+                  Search: &ldquo;{searchTerm}&rdquo;
                   <button
                     onClick={() => setSearchTerm('')}
                     className="ml-2 text-primary-600 hover:text-primary-800"
