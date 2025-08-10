@@ -1,5 +1,6 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
+import Link from 'next/link';
 import { useState } from 'react';
 import { useAccount, useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
@@ -160,7 +161,7 @@ const RegisterNGO: NextPage = () => {
               <h3 className="text-lg font-semibold mb-4">What happens next?</h3>
               <ul className="text-left space-y-2 text-gray-700">
                 <li>• Your registration will be reviewed within 5-7 business days</li>
-                <li>• You'll receive verification status updates via your connected wallet</li>
+                <li>• You&apos;ll receive verification status updates via your connected wallet</li>
                 <li>• Once verified, your NGO will be listed on the platform</li>
                 <li>• Supporters can then start staking tokens to generate yield for your cause</li>
               </ul>
@@ -176,9 +177,9 @@ const RegisterNGO: NextPage = () => {
                 View Transaction
                 <ExternalLink className="ml-2 h-4 w-4" />
               </a>
-              <a href="/discover" className="btn-primary">
+              <Link href="/discover" className="btn-primary">
                 Discover Other NGOs
-              </a>
+              </Link>
             </div>
           </div>
         </div>

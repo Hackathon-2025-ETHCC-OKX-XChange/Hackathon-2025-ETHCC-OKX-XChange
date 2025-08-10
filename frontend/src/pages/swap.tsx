@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useAccount } from 'wagmi';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { ArrowLeft, ArrowUpDown, TrendingUp, ExternalLink, Zap } from 'lucide-react';
@@ -38,7 +38,7 @@ const SwapPage: NextPage = () => {
     }
   ];
 
-  const getQuote = async () => {
+  const getQuote = useCallback(async () => {
     if (!amount || !fromToken || !toToken) return;
 
     setIsLoading(true);
@@ -66,7 +66,7 @@ const SwapPage: NextPage = () => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [amount, fromToken, toToken]);
 
   // Auto-refresh quote when inputs change
   useEffect(() => {
@@ -77,7 +77,7 @@ const SwapPage: NextPage = () => {
     }, 500);
 
     return () => clearTimeout(timer);
-  }, [amount, fromToken, toToken]);
+  }, [amount, fromToken, toToken, getQuote]);
 
   const handleSwapTokens = () => {
     const temp = fromToken;

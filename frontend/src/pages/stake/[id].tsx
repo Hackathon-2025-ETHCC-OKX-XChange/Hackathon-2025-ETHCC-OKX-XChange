@@ -163,7 +163,7 @@ const StakePage: NextPage = () => {
           <div className="max-w-2xl mx-auto text-center px-4">
             <h1 className="text-4xl font-bold text-gray-900 mb-6">NGO Not Found</h1>
             <p className="text-xl text-gray-600 mb-8">
-              The NGO you're trying to support doesn't exist.
+              The NGO you&apos;re trying to support doesn&apos;t exist.
             </p>
             <Link href="/discover" className="btn-primary">
               Discover NGOs
@@ -188,7 +188,7 @@ const StakePage: NextPage = () => {
             </div>
             <h1 className="text-4xl font-bold text-gray-900 mb-4">Staking Successful!</h1>
             <p className="text-xl text-gray-600 mb-8">
-              You've successfully staked {amount} {selectedToken.symbol} for {ngo.name}!
+              You&apos;ve successfully staked {amount} {selectedToken.symbol} for {ngo.name}!
             </p>
 
             <div className="bg-gray-50 rounded-lg p-6 mb-8">
@@ -270,7 +270,7 @@ const StakePage: NextPage = () => {
                     Stake for {ngo.name}
                   </h1>
                   <p className="text-gray-600">
-                    Support {ngo.name}'s mission by staking your tokens to generate yield
+                    Support {ngo.name}&apos;s mission by staking your tokens to generate yield
                   </p>
                 </div>
 
