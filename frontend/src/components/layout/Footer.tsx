@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Heart, Github, Twitter, Globe } from 'lucide-react';
+import { Github, Twitter, Globe } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -9,7 +9,11 @@ export default function Footer() {
           {/* Brand */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
-              <Heart className="h-8 w-8 text-primary-400" />
+              <img
+                src="/logos/x-change-logo.png"
+                alt="X-Change Logo"
+                className="h-8 w-8 object-contain"
+              />
               <span className="text-xl font-bold">X-Change</span>
             </div>
             <p className="text-gray-400 mb-6 max-w-md">

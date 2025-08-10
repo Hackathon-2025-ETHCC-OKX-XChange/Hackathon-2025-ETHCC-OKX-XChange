@@ -30,6 +30,8 @@ const Home: NextPage = () => {
           name="description"
           content="X-Change: Support NGOs through yield staking on X Layer. Keep your principal, fund impact. Built for OKX ETHCC Hackathon."
         />
+        <link rel="icon" href="/favicon.png" />
+        <link rel="apple-touch-icon" href="/logos/x-change-logo.png" />
       </Head>
 
       {/* Price Ticker */}
@@ -39,6 +41,15 @@ const Home: NextPage = () => {
       <section className="bg-gradient-to-br from-primary-600 via-purple-600 to-pink-500">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="text-center">
+            {/* Logo */}
+            <div className="mb-8">
+              <img
+                src="/logos/x-change-logo.png"
+                alt="X-Change Logo"
+                className="h-24 w-24 object-contain mx-auto mb-4"
+              />
+            </div>
+
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-8">
               X-Change
               <span className="block text-5xl md:text-6xl mt-4 bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 bg-clip-text text-transparent">
