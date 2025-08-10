@@ -9,9 +9,10 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
-                { path: '/', label: 'Home' },
-            { path: '/discover', label: 'Discover' },
-            { path: '/portfolio', label: 'Portfolio' },
+    { path: '/', label: 'Home' },
+    { path: '/discover', label: 'Discover' },
+    { path: '/swap', label: 'Swap' },
+    { path: '/portfolio', label: 'Portfolio' },
   ];
 
   return (

@@ -6,6 +6,7 @@ import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { Heart, Coins, Users, TrendingUp, ArrowRight } from 'lucide-react';
 import { useNGORegistry } from '../hooks/useNGORegistry';
 import { NGOCard } from '../components/ngo/NGOCard';
+import { PriceTicker } from '../components/ticker/PriceTicker';
 
 const Home: NextPage = () => {
   const { isConnected } = useAccount();
@@ -30,6 +31,9 @@ const Home: NextPage = () => {
           content="X-Change: Support NGOs through yield staking on X Layer. Keep your principal, fund impact. Built for OKX ETHCC Hackathon."
         />
       </Head>
+
+      {/* Price Ticker */}
+      <PriceTicker />
 
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary-600 via-purple-600 to-pink-500">
@@ -81,6 +85,13 @@ const Home: NextPage = () => {
                   >
                     Discover NGOs
                     <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
+                  <Link
+                    href="/swap"
+                    className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-orange-500 to-red-500 text-white font-semibold rounded-lg hover:from-orange-600 hover:to-red-600 transition-colors text-lg"
+                  >
+                    Swap Tokens (OKX DEX)
+                    <TrendingUp className="ml-2 h-5 w-5" />
                   </Link>
                   <Link
                     href="/register-ngo"
