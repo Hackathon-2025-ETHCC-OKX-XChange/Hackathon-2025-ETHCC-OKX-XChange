@@ -5,13 +5,13 @@
 - **RPC URL**: `https://xlayertestrpc.okx.com`
 - **Explorer**: `https://www.okx.com/xlayer-test/explorer`
 
-## Deployed Contracts (placeholders)
+## Deployed Contracts
 
 ### Core Protocol Contracts
-- **NGORegistry**: `0x0000000000000000000000000000000000000000`  // TBD
-- **MockYieldVault**: `0x0000000000000000000000000000000000000000`  // TBD
-- **MorphImpactStaking**: `0x0000000000000000000000000000000000000000`  // TBD
-- **YieldDistributor**: `0x0000000000000000000000000000000000000000`  // TBD
+- **NGORegistry**: `0x522dAcDf83024D6158f5d84421508deAeC3E40F3`
+- **MockYieldVault**: `0x7c40e4101540bF0187f3E22934cf01a255cDADf3`
+- **MorphImpactStaking**: `0xfC9572Cf3c528918dafbAa6F9b1D1E7dE62d0cBB`
+- **YieldDistributor**: `0x5368b928eFD703f060834252E8Dffe0Ad5151b7c`
 
 ### Mock/Token Addresses (if applicable)
 - **USDC (Test/Mock)**: `0x0000000000000000000000000000000000000000`  // TBD
@@ -44,12 +44,12 @@
 - **USDC**: 50,000 USDC in vault
 - **WETH**: 50 WETH in vault
 
-## Deployment Details (to be filled after broadcast)
-- **Deployer**: `TBD`
-- **Gas Used**: `TBD`
-- **Gas Price**: `TBD`
-- **Total Cost**: `TBD`
-- **Block Explorer Links**: `TBD`
+## Deployment Details
+- **Deployer**: `0x3A76F9c1c5037FA94271e13f70080E99beCeE5dF`
+- **Gas Price**: `1 gwei (legacy)`
+- **Estimated Total Gas Used**: `~7,144,131`
+- **Estimated Total Cost**: `~0.007144131 OKB`
+- **Broadcast Record**: `backend/broadcast/DeployCore.s.sol/196/run-latest.json`
 
 ## How to Deploy
 
