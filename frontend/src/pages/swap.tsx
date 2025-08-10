@@ -132,7 +132,7 @@ const SwapPage: NextPage = () => {
                 From
               </label>
               <div className="relative">
-                <selec
+                <select
                   value={fromToken.symbol}
                   onChange={(e) => {
                     const selected = availableTokens.find(t => t.symbol === e.target.value);
@@ -147,7 +147,7 @@ const SwapPage: NextPage = () => {
                   ))}
                 </select>
               </div>
-              <inpu
+              <input
                 type="number"
                 step="any"
                 min="0"
@@ -174,7 +174,7 @@ const SwapPage: NextPage = () => {
                 To
               </label>
               <div className="relative">
-                <selec
+                <select
                   value={toToken.symbol}
                   onChange={(e) => {
                     const selected = availableTokens.find(t => t.symbol === e.target.value);
