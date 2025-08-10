@@ -270,7 +270,7 @@ const SwapPage: NextPage = () => {
                   <div className="space-y-2 text-sm">
                     <div className="flex items-center space-x-2">
                       <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                      <span className="text-gray-700">API Key: <code className="bg-gray-100 px-1 rounded text-xs">48ac8358-1271...aa84</code></span>
+                      <span className="text-gray-700">API Key: <code className="bg-gray-100 px-1 rounded text-xs">44c0bc3a-960b...7476</code></span>
                     </div>
                     <div className="flex items-center space-x-2">
                       <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>

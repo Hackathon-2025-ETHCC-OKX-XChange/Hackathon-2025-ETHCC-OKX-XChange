@@ -135,9 +135,9 @@ export interface QuoteResponse {
 
 class OKXDexService {
   private baseURL = 'https://web3.okx.com';
-  private apiKey = process.env.NEXT_PUBLIC_OKX_API_KEY || '48ac8358-1271-4280-bcb1-308e8492aa84';
-  private secretKey = process.env.NEXT_PUBLIC_OKX_SECRET_KEY || 'BE664F23088FA5A3CF7B1B21A2AFC22C';
-  private passphrase = process.env.NEXT_PUBLIC_OKX_API_PASSPHRASE || 'X-Change2024';
+  private apiKey = process.env.NEXT_PUBLIC_OKX_API_KEY || '44c0bc3a-960b-4a70-98cc-b70be7b07476';
+  private secretKey = process.env.NEXT_PUBLIC_OKX_SECRET_KEY || '7E4C6C9657AEB3A9D1646DDA169DFF95';
+  private passphrase = process.env.NEXT_PUBLIC_OKX_API_PASSPHRASE || 'a567824A@';
 
   // Price cache to prevent too many API requests
   private priceCache: Map<string, { data: TokenPrice[], timestamp: number }> = new Map();
