@@ -344,10 +344,10 @@ const StakePage: NextPage = () => {
                 {/* Amount Input */}
                 <div className="mb-6">
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Stake Amoun
+                    Stake Amount
                   </label>
                   <div className="relative">
-                    <inpu
+                    <input
                       type="number"
                       step={selectedToken.symbol === 'USDC' ? '0.01' : '0.0001'}
                       min="0"
@@ -406,7 +406,7 @@ const StakePage: NextPage = () => {
                     Yield Contribution to NGO: {yieldContribution}%
                   </label>
                   <div className="px-3">
-                    <inpu
+                    <input
                       type="range"
                       min="50"
                       max="100"
