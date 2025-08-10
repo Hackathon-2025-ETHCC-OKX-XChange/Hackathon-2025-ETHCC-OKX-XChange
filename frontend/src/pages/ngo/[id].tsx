@@ -47,7 +47,7 @@ const NGODetails: NextPage = () => {
           <div className="max-w-2xl mx-auto text-center px-4">
             <h1 className="text-4xl font-bold text-gray-900 mb-6">NGO Not Found</h1>
             <p className="text-xl text-gray-600 mb-8">
-              The NGO you're looking for doesn't exist or hasn't been verified yet.
+              The NGO you&apos;re looking for doesn&apos;t exist or hasn&apos;t been verified yet.
             </p>
             <Link href="/discover" className="btn-primary">
               Discover Other NGOs
